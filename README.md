@@ -8,14 +8,23 @@ It’s built using only the Python standard library (plus `click` for the CLI) a
 
 ---
 
-## 🚀 Features
+## ✨ Features Implemented
 
-- ✅ Enqueue and process jobs via CLI  
-- 🔁 Retry failed jobs with configurable max retries  
-- ⚙️ Dynamic configuration system (`config set / show`)  
-- 📊 Job status overview (pending, processing, completed, failed)  
-- 💀 Dead Letter Queue (DLQ) for failed jobs  
-- 👷 Worker simulation with concurrent job processing  
+### 🖥️ Core Functionality (Web/CLI Equivalent)
+- Enqueue and manage jobs using simple JSON inputs.
+- Start one or multiple worker threads to process jobs concurrently.
+- Persistent job tracking using **SQLite database**.
+- Support for **Dead Letter Queue (DLQ)** for failed jobs.
+- View job statistics and overall queue status.
+- Configurable system parameters through the CLI.
+
+### ⚙️ Internal Architecture
+- Modular codebase divided into:
+  - `queuectl.py` → CLI entry point (built with `click`)
+  - `database.py` → Handles SQLite database interactions
+  - `job_manager.py` → Core logic for job enqueue, dequeue, retry, DLQ
+  - `worker.py` → Worker threads that process queued jobs
+  - `config_manager.py` → Configuration persistence and access
 
 ---
 
@@ -73,3 +82,4 @@ Language: Python
 Framework: Click (for CLI interface)
 Database: SQLite
 Architecture: Modular (job manager, worker, config, and DB)
+
